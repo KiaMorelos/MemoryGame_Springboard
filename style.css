@@ -1,0 +1,84 @@
+
+body {
+  background-color: #fafafa;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+#header {
+  text-align: center;
+  font-size: 2em;;
+}
+
+#scores {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+#game div {
+  width: 15%;
+  height: 200px;
+  margin: 10px;
+  display: inline-block;
+  border-radius: 100px;
+}
+
+button {
+  background-color: purple;
+  border: none;
+  border-radius: 20px;
+  color: #fff;
+  font-weight: bold;
+  padding: 1%;
+  width: 20%;
+  text-align: center;
+}
+
+.red {
+  background-image: none;
+  background-color: red;
+}
+.blue {
+  background-color: blue;
+}
+.green {
+  background-color: green;
+}
+.orange {
+  background-color: orange;
+}
+.purple {
+  background-color: purple;
+}
+
+.pink {
+  background-color: pink;
+}
+
+#update {
+  text-align: center;
+}
+
+/*card back is by Tamanna Rumee on Unplash https://unsplash.com/photos/tYnnY7gKyZs?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink, where photos are licensed as CC0 */
+
+.faceDown{
+  background-color: rgb(150, 239, 255);
+  background-image: url(card-back.jpeg);
+  background-position: center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  }
+  
+
+  .noClickingAllowed {
+    pointer-events: none;
+  }
+
+  .gameStarted {
+    background-color: green;
+    color:#fff;
+  }
+
+  .static {
+    opacity: .5;
+    pointer-events: none;
+  }
