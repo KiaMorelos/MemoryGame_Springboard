@@ -1,25 +1,19 @@
 const gameContainer = document.getElementById("game");
-const startGame = document.querySelector("button")
+const startGame = document.querySelector(".start")
 const currentScore = document.querySelector(".current")
 const showBestScore = document.querySelector(".previous")
-
 let countGameClicks = 0;
 
 gameContainer.classList.add("static")
 
-currentScore.innerText = `${countGameClicks}`
 
 //get the stuff i saved to local storage back on the page
-bestScore = JSON.parse(localStorage.getItem("best score")) || [];
+bestScore = JSON.parse(localStorage.getItem("best score")) || 0;
 
 showBestScore.innerText = `${bestScore}`
 
 
-startGame.addEventListener('click', function(){
- gameContainer.classList.toggle("static") //remove disabled clicking class
- startGame.classList.toggle('gameStarted')
- startGame.innerText = "Game Started!"
-})
+
 
 
 const COLORS = [
@@ -94,6 +88,7 @@ function handleCardClick(event) {
     event.target.classList.toggle('faceDown') 
     //turn off face down class, show card
     event.target.classList.toggle('faceUp')
+
     setTimeout(function() {
       //reset click count. turn face down class back on, and remove faceUp class after 1s 
       gameContainer.classList.toggle('noClickingAllowed')
@@ -123,8 +118,6 @@ function areMatching (){
     
     //check for matches. Using CSS class values to find match. If match is found turn of the faceDown class and add 'matched' class, which disables pointer events - turning the cards back over to get the same match twice. Tried this first by comparing entire elements but kept getting a false value no matter what - I still don't know why.
 
-    let update = document.getElementById("update")
-
     if(cardCheck[0].classList.value === cardCheck[1].classList.value){
       cardCheck[0].classList.toggle('matched')
       cardCheck[0].classList.toggle('faceDown')
@@ -135,32 +128,50 @@ function areMatching (){
  } 
 
 function hasWon(){
-
   let matchedCards = document.getElementsByClassName('matched')
   bestScore = JSON.parse(localStorage.getItem("best score"))
+  
   if(matchedCards.length === 12){
-    let update = document.getElementById("update")
-    update.innerText = "You won the game!"
+    const tellWin = document.getElementById("tellWin")
+    tellWin.innerText = "You won the game!"
     alert("You won!")
-
-    if(bestScore.length ===  0 || bestScore === 0){
+    startGame.innerText = "Start Over"
+    
+    localStorage.setItem("best score", JSON.stringify(bestScore))
+    
+    if(bestScore === 0 && countGameClicks > 0){
       bestScore = countGameClicks
-      localStorage.setItem("best score", JSON.stringify(bestScore))
-      } 
+    localStorage.setItem("best score", JSON.stringify(bestScore))
+    }
 
     if(countGameClicks < bestScore){
     bestScore = countGameClicks
     localStorage.setItem("best score", JSON.stringify(bestScore))
     } 
   }
+
 }
 
 }
+
 
 //I'm planning to work on the further study points for this project as time allows - but wanted to turn it in right away now that explicit requirements are met. I feel reasonably certain I know how to do most of them. 
 
-// when the DOM loads
-createDivsForColors(shuffledColors);
+// // when the DOM loads
+// createDivsForColors(shuffledColors);
 
-/* */
+startGame.addEventListener('click', function(){
+  if(startGame.innerText === "Game Started!" || startGame.innerText === "Start Over"){
+    gameContainer.innerHTML = "";
+      shuffle(COLORS);
+   }
+ gameContainer.classList.toggle("static") //remove disabled clicking class
+ startGame.classList.toggle('gameStarted')
+ startGame.innerText = "Game Started!"
+ shuffle(COLORS);
+ createDivsForColors(shuffledColors);
+ countGameClicks = 0;  
+ currentScore.innerText = `${countGameClicks}`
+})
+// /* */
 

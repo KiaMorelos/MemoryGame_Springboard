@@ -54,7 +54,7 @@ button {
   background-color: pink;
 }
 
-#update {
+#tellWin {
   text-align: center;
 }
 
@@ -69,7 +69,7 @@ button {
   }
   
 
-  .noClickingAllowed {
+  /* .noClickingAllowed {
     pointer-events: none;
   }
 
@@ -81,4 +81,4 @@ button {
   .static {
     opacity: .5;
     pointer-events: none;
-  }
+  } */
