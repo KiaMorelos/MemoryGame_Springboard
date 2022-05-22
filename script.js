@@ -142,11 +142,13 @@ function hasWon(){
     if(bestScore === 0 && countGameClicks > 0){
       bestScore = countGameClicks
     localStorage.setItem("best score", JSON.stringify(bestScore))
+    showBestScore.innerText = `${bestScore}`
     }
 
     if(countGameClicks < bestScore){
     bestScore = countGameClicks
     localStorage.setItem("best score", JSON.stringify(bestScore))
+    showBestScore.innerText = `${bestScore}`
     } 
   }
 
@@ -175,3 +177,5 @@ startGame.addEventListener('click', function(){
 })
 // /* */
 
+localStorage.setItem("best score", JSON.stringify(bestScore))
+ 
